@@ -12,10 +12,10 @@ from flask_gravatar import Gravatar
 from functools import wraps
 from flask import abort
 import os
-key = os.environ.get("APP_KEY")
+APP_KEY = os.environ.get("APP_KEY")
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = key
+app.config['SECRET_KEY'] = APP_KEY
 ckeditor = CKEditor(app)
 Bootstrap(app)
 # configure login
