@@ -11,9 +11,11 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
 from flask import abort
+import os
+key = os.environ.get("APP_KEY")
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = key
 ckeditor = CKEditor(app)
 Bootstrap(app)
 # configure login
@@ -103,7 +105,6 @@ def admin_only(f):
 def get_all_posts():
     posts = db.session.query(BlogPost).all()
     # posts = BlogPost.query.all()
-    print(posts)
     return render_template("index.html", all_posts=posts)
 
 
